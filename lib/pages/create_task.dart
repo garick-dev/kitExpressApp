@@ -1,0 +1,399 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:testproject/custom_icons.dart';
+
+
+//////////////////////COMPONENTS///////////////////
+import 'package:testproject/component/global/menu.dart';
+import 'package:testproject/component/global/gradient_app_bar.dart';
+
+
+class CreateTask extends StatelessWidget {
+  const CreateTask({Key? key}) : super(key: key);
+
+  @override
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primaryColor: const Color(0xFFF9F9F9)),
+      home: const CreateTaskState(),
+    );
+  }
+}
+
+class CreateTaskState extends StatefulWidget {
+  const CreateTaskState({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() => _CreateTaskState();
+
+}
+
+class _CreateTaskState extends State<CreateTaskState>  with SingleTickerProviderStateMixin{
+
+
+
+  /////////////////////////GLOBAL//////////////////////
+
+  //fonts
+  static const montserrat400 = "Montserrat400";
+  static const montserrat500 = "Montserrat500";
+  static const montserrat600 = "Montserrat600";
+  static const openSans400 = "OpenSans400";
+  static const openSans600 = "OpenSans600";
+  static const openSans700 = "OpenSans700";
+
+
+  //color
+  static const orangeColor = Color(0xFFF49613);
+  static const yellowColor = Color(0xFFFBC11D);
+  static const blackColor = Color(0xFF0D0903);
+  static const greyColor = Color(0xFFBDBDBD);
+
+//letterSpacing
+  static const customLetterSpacing = -0.4;
+
+  /////////////GLOBAL////////////////////////
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold (
+      appBar:
+
+      AppBar(
+        title:
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            SizedBox(
+              // height: 150,
+              child: Text(
+                "Создать задание",
+                softWrap: true,
+                style: TextStyle(
+                  fontSize: 24,
+                  letterSpacing: customLetterSpacing,
+                  fontFamily: openSans700,
+                  overflow: TextOverflow.fade,
+                ),
+              ),),
+
+          ],),
+
+        flexibleSpace: const GradientAppBar(),
+
+      ),
+      body: Container(
+        width: MediaQuery.of(context).size.width * 1.0,
+        padding: const EdgeInsets.only(top: 20.0),
+        child: SingleChildScrollView(
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  const Padding(padding: EdgeInsets.only(top: 10.0),),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    padding: EdgeInsets.all(20.0),
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        const Text("Для чего создавать задание?",
+                        style: TextStyle(fontFamily: openSans400, fontSize: 19, letterSpacing: customLetterSpacing, color: yellowColor),),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            onPressed: (){}, icon: const Icon(CustomIcon.arrow_top, size: 10, color: yellowColor,)),
+                      ],),
+                      const Padding(padding: EdgeInsets.only(top: 45.0),),
+                      Container(
+                        padding: EdgeInsets.only(left: 5.0),
+                        child: const Text("Задание появится на сайте, специалисты будут предлагать свои услуги и цены. Выбирайте подходящего по отзывам, рейтингу и примерам работ. Обращайте внимание на отметку “Паспорт проверен” в анкете. Поиск специалиста бесплатный. А за выполненную работу вы платите специалисту напрямую удобным способом.",
+                        style: TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: blackColor, height: 1.3),),
+                      ),
+                      const Padding(padding: EdgeInsets.only(top: 25.0),),
+                    ],),
+                   decoration: const BoxDecoration(
+                     color: Colors.white,
+                     borderRadius: BorderRadius.all(Radius.circular(3)),
+                     boxShadow: [
+                       BoxShadow(
+                         color: greyColor,
+                         spreadRadius: 1,
+                         blurRadius: 3,
+                       )
+                     ]
+                   ),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 35.0),),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      const Text("Название:",
+                      style: TextStyle(fontFamily: openSans700, fontSize: 16, letterSpacing: customLetterSpacing, color: blackColor),),
+                      const Padding(padding: EdgeInsets.only(top: 5.0),),
+                      Container(
+                        child:  TextFormField(
+                          style: const TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: blackColor),
+                          decoration: const InputDecoration(
+                            fillColor: Colors.green,
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.transparent
+                                )
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            isDense: true,
+                            hintText: "Дайте название вашему заданию",
+                            hintStyle: TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: greyColor),
+                            contentPadding: EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(3)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: greyColor,
+                              spreadRadius: 1,
+                              blurRadius: 2,
+                            )
+                          ]
+                        ),
+                      )
+
+                    ],),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 35.0),),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Выбор категории:",
+                          style: TextStyle(fontFamily: openSans700, fontSize: 16, letterSpacing: customLetterSpacing, color: blackColor),),
+                        const Padding(padding: EdgeInsets.only(top: 5.0),),
+                        Container(
+                          child:  TextFormField(
+                            style: const TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: blackColor),
+                            decoration: const InputDecoration(
+                              fillColor: Colors.green,
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent
+                                  )
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              isDense: true,
+                              hintText: "Начните вводить и выберите из списка",
+                              hintStyle: TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: greyColor),
+                              contentPadding: EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                            ),
+                          ),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(3)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: greyColor,
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                )
+                              ]
+                          ),
+                        )
+
+                      ],),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 35.0),),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Город:",
+                          style: TextStyle(fontFamily: openSans700, fontSize: 16, letterSpacing: customLetterSpacing, color: blackColor),),
+                        const Padding(padding: EdgeInsets.only(top: 5.0),),
+                        Container(
+                          child:  TextFormField(
+                            style: const TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: blackColor),
+                            decoration: const InputDecoration(
+                              fillColor: Colors.green,
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent
+                                  )
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              isDense: true,
+                              hintText: "Начните вводить и выберите из списка",
+                              hintStyle: TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: greyColor),
+                              contentPadding: EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                            ),
+                          ),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(3)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: greyColor,
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                )
+                              ]
+                          ),
+                        )
+
+                      ],),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 35.0),),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Описание:",
+                          style: TextStyle(fontFamily: openSans700, fontSize: 16, letterSpacing: customLetterSpacing, color: blackColor),),
+                        const Padding(padding: EdgeInsets.only(top: 5.0),),
+                        Container(
+                          height: 90,
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child:  TextFormField(
+                            style: const TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: blackColor),
+                            minLines: null,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              fillColor: Colors.green,
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent
+                                  )
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              isDense: true,
+                              hintText: "Максимально опишите задание - это поможет быстрее найти подходящих исполнителей",
+                              hintMaxLines: 5,
+                              hintStyle: TextStyle(fontFamily: montserrat400, fontSize: 14, letterSpacing: customLetterSpacing, color: greyColor),
+                              contentPadding: EdgeInsets.only(left: 10.0),
+                            ),
+                          ),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(3)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: greyColor,
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                )
+                              ]
+                          ),
+                        )
+
+                      ],),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 25.0),),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        primary: Colors.white,
+                        shadowColor: Colors.transparent,
+                      ),
+                      onPressed: (){},
+                      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Прикрепить фото",
+                        style: TextStyle(fontFamily: openSans600, fontSize: 16, color: orangeColor, letterSpacing: customLetterSpacing),),
+                        Image.asset("assets/photo.png"),
+
+                      ],),),
+
+
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(3)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: greyColor,
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                        )
+                      ]
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 30.0),),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        primary: greyColor,
+                        shadowColor: Colors.transparent,
+                      ),
+                      onPressed: (){},
+                      child:
+                          const Text("Опубликовать задание",
+                          style: TextStyle(fontFamily: openSans700, fontSize: 19, letterSpacing: customLetterSpacing),),
+
+
+                        ),
+
+
+                    decoration: const BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.all(Radius.circular(3)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: greyColor,
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                          )
+                        ]
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 30.0),),
+                ],
+              ),
+
+            ],),
+        ),
+      ),
+
+
+
+      bottomNavigationBar: const MainMenu(),
+
+    );
+
+
+  }
+}
+
